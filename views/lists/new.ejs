@@ -1,0 +1,12 @@
+<%- layout('layouts/application') %>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h3><%= title %></h3>
+
+    <a href="/lists" class="btn btn-secondary">Back</a>
+  </div>
+  <div class="card-body">
+    <%- include('./form', { list: list, url: '/lists' }) %>
+  </div>
+</div>
