@@ -8,6 +8,6 @@
   </div>
 
   <div class="card-body">
-    <%- include('./form', { list: list, url: '/lists' }) %>
+    <%- include('./form', { task: task, url: `/lists/${list_id}/tasks` }) %>
   </div>
 </div>

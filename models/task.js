@@ -2,9 +2,8 @@
 const {
   Model
 } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class List extends Model {
+  class Task extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,16 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Task, { foreignKey: 'list_id', as: 'tasks' })
+      this.belongsTo(models.List, { foreignKey: 'list_id', as: 'list' })
     }
   }
-  List.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT
+  Task.init({
+    name: DataTypes.STRING,
+    done: DataTypes.BOOLEAN,
+    list_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'List',
-  }, { table_name: 'Lists' });
-
-  return List;
+    modelName: 'Task',
+  });
+  return Task;
 };

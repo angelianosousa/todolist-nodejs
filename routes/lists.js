@@ -51,4 +51,22 @@ router.get('/:id/delete', function(req, res){
   })
 })
 
+router.get('/:list_id/tasks/new', function(req, res){
+  const list_id = req.params.list_id;
+
+  res.render('tasks/new', { title: 'New Task', list_id: list_id, task: [{}] })
+})
+
+router.post('/:list_id/tasks', function(req, res){
+  const list_id = req.params.list_id;
+
+  db.List.findByPk(list_id).then(list => {
+    list.createTask(req.body).then(task => {
+      console.log('=====================>', req.body)
+      console.log(task)
+      res.redirect('/lists')
+    })
+  })
+})
+
 module.exports = router;
